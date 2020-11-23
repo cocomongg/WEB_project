@@ -4,37 +4,39 @@
 <head>
     <!-- #region Meta Data -->
     <%- include ("./head.ejs") %>
-    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css" />
     <!-- #endregion -->
-</head>>
+</head>
+
+<header>
+    <%- include ("./header.ejs") %>
+</header>
 
 <body>
-    <div class="ui container">
-        <!-- #region Header -->
-        <header>
-            <%- include ("./header.ejs") %>
-        </header>
-        <!-- #endregion -->
-
-        <!-- #region BODY -->
-        <div class="menu">
-            <div class="item">
-                <h4>다이어트</h4>
-                <img class="item-img" src="../img/diet.jpeg">
+    <!-- #region BODY -->
+    <div class="container body">
+        <div class="text-center row">
+            <div class="col-sm-4 item">
+                <a href="/cardio">
+                    다이어트
+                    <img src="../img/diet.jpeg" alt="diet" class="img-responsive img">
+                </a>
             </div>
-            <div class="item">
-                <h4>웨이트</h4>
-                <img class="item-img" src="../img/weight.jpg">
+            <div class="col-sm-4 item">
+                <a href="/cardio">
+                    웨이트
+                    <img src="../img/weight.jpg" alt="weight" class="img-responsive img">
+                </a>
             </div>
-            <div class="item">
-                <a href="./cardio">
-                    <h4>유산소</h4>
-                    <img class="item-img" src="../img/o2.jpg">
+            <div class="col-sm-4 item">
+                <a href="/cardio">
+                    유산소
+                    <img src="../img/o2.jpg" alt="o2" class="img-responsive img">
                 </a>
             </div>
         </div>
-        <!-- #endregion -->
     </div>
+    <!-- #endregion -->
 </body>
 
 </html>

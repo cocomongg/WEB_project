@@ -1,37 +1,8 @@
-#title {
-    position: relative;
-    padding: 50px;
+.body {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.img {
     width: 100%;
-    text-align: center;
-}
-
-#title-menu {
-    float: right;
-    width: 25%;
-}
-
-#title-board {
-    float: left;
-}
-
-.menu {
-    content: "";
-    clear: both;
-    width: 100%;
-    text-align: center;
-}
-
-.item {
-    display: inline-block;
-    vertical-align: center;
-    /* float: left; */
-    padding: 20px;
-    max-width: 20%;
-    max-height: 400px;
-    overflow: hidden;
-}
-
-.item-img {
-    max-width: initial;
-    margin-left: -70%;
 }
