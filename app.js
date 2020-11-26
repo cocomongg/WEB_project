@@ -1,12 +1,38 @@
-const { Router } = require("express");
+/* #region EXPRESS */
 const express = require("express");
 const app = express();
 const port = 3000;
 
-/* #region for Static HTML */
 app.use(express.static("public"));
-/* #endregion */
 
 app.listen(port, () => {
-  console.log(`app listening at http://localhost:${port}`);
+  console.log(`app listening at http://127.0.0.1:${port}`);
 });
+/* #endregion */
+
+/* #region DATABASE */
+var user;
+
+const mysql = require("mysql");
+
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "1234",
+  database: "mydb",
+});
+
+connection.connect();
+
+connection.query("SELECT * from Users", (error, rows, fields) => {
+  if (error) throw error;
+  user = rows;
+  console.log("User info is: ", rows);
+});
+
+connection.end();
+
+app.all("/mypage.html", function (request, response) {
+  response.send("<h1>hi</h1>");
+});
+/* #endregion */
