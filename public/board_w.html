@@ -80,21 +80,17 @@
 
 <body>
     <!-- #region BODY -->
-    <form action="/action_page.php">
-        <div class="form-group">
-          <label for="comment">Comment:</label>
-          <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-
-    <form action="/action_page.php">
-        <div class="form-group">
-            <label for="comment">Comment:</label>
-            <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="container">
+        <form action="/action_page.php">
+            <div class="form-group">
+                <label for="comment">title:</label>
+                <textarea class="form-control" rows="1" id="title" name="text"></textarea>
+                <label for="comment">contents:</label>
+                <textarea class="form-control" rows="16" id="contents" name="text"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
     <!-- #endregion -->
 </body>
 
