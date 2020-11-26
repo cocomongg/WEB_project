@@ -81,10 +81,11 @@
 <body>
     <!-- #region BODY -->
     <div class="container body">
-        <form action="/action_page.php">
-            <input class="form-control title" type="text" placeholder="제목을 입력하세요">
-            <textarea class="form-control contents" rows="15" placeholder="내용을 입력하세요"></textarea>
-            <button type="button" class="btn btn-outline-dark float-right">게시하기</button>
+        <form action="/board", method="POST">
+            <legend>POST</legend>
+            <input class="form-control title" name="title" type="text" placeholder="제목을 입력하세요">
+            <textarea class="form-control contents" name="contents" rows="15" placeholder="내용을 입력하세요"></textarea>
+            <button class="btn btn-outline-dark float-right" type="button" >게시하기</button>
         </form>
     </div>
     <!-- #endregion -->

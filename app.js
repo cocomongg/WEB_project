@@ -24,15 +24,15 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-connection.query("SELECT * from Users", (error, rows, fields) => {
+connection.query("SELECT * from Posts", (error, rows, fields) => {
   if (error) throw error;
   user = rows;
-  console.log("User info is: ", rows);
+  console.log("Posts info is: ", rows);
 });
 
 connection.end();
 
-app.all("/mypage.html", function (request, response) {
-  response.send("<h1>hi</h1>");
+app.all("/mypage", function (request, response) {
+  response.send(user);
 });
 /* #endregion */
