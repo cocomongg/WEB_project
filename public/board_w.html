@@ -17,7 +17,7 @@
 
     <!-- #region Custom CSS -->
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
-    <link rel="stylesheet" type="text/css" href="css/mypage.css" />
+    <link rel="stylesheet" type="text/css" href="css/board_w.css" />
     <!-- #endregion -->
 </head>
 
@@ -80,15 +80,11 @@
 
 <body>
     <!-- #region BODY -->
-    <div class="container">
+    <div class="container body">
         <form action="/action_page.php">
-            <div class="form-group">
-                <label for="comment">title:</label>
-                <textarea class="form-control" rows="1" id="title" name="text"></textarea>
-                <label for="comment">contents:</label>
-                <textarea class="form-control" rows="16" id="contents" name="text"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <input class="form-control title" type="text" placeholder="제목을 입력하세요">
+            <textarea class="form-control contents" rows="15" placeholder="내용을 입력하세요"></textarea>
+            <button type="button" class="btn btn-outline-dark float-right">게시하기</button>
         </form>
     </div>
     <!-- #endregion -->
