@@ -5,3 +5,5 @@ const db = require("../../models");
 
 
 // TODO: API 만들기
+
+module.exports = router;

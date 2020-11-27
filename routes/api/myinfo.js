@@ -3,22 +3,26 @@ const router = express.Router();
 
 const db = require("../../models");
 
-// TODO: 되는지 확인,, 로그인이 안되어있어서 아직 안되는 듯..?
-router.get("/myinfo", async function (req, res) {
-  let user = req.user.id;
-  if (!user) {
-    res.sendStatus(400);
-    return;
+router.get("/", async function (req, res, next) {
+  if (req.user == undefined) {
+    console.log("user undefined");
+    return res.sendStatus(400);
   }
 
+  let user = req.user.id;
+  console.log("user: ", user)
+
   try {
-    let info = db.Document.findOne({
+    let info = await db.User.findOne({
       where: {
-        username: user,
+        id: user,
       },
     });
+    console.log("info:", info);
+    res.json(info);
   } catch (err) {
     console.log(err);
+    return res.sendStatus(500);
   }
 });
 
