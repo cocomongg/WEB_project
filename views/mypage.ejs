@@ -14,39 +14,40 @@
         <h4 class="font-weight-bold">내 정보</h4>
         <div class="row justify-content-center">
           <div class="col-6">
-            <!-- TODO: myinfo API 사용해서 DB data 불러오기 -->
-            <form action="/myinfo">
-              <table class="table table-sm table-borderless">
-                <thead class="thead-dark">
-                  <tr>
-                    <th>index</th>
-                    <th>User Info</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>아이디:</td>
-                    <td>dkdlel123</td>
-                  </tr>
-                  <tr>
-                    <td>비밀번호:</td>
-                    <td>1234567890</td>
-                  </tr>
-                  <tr>
-                    <td>이름:</td>
-                    <td>홍길동</td>
-                  </tr>
-                  <tr>
-                    <td>성별:</td>
-                    <td>남자</td>
-                  </tr>
-                  <tr>
-                    <td>생년월일:</td>
-                    <td>19951221</td>
-                  </tr>
-                </tbody>
-              </table>
-            </form>
+            <table class="table table-sm table-borderless">
+              <thead class="thead-dark">
+                <tr>
+                  <th>index</th>
+                  <th>User Info</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>아이디:</td>
+                  <td><%= data.username %></td>
+                </tr>
+                <tr>
+                  <td>비밀번호:</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>이름:</td>
+                  <td><%= data.name %></td>
+                </tr>
+                <tr>
+                  <td>성별:</td>
+                  <% if (data.isMan==true) { %>
+                  <td>남자</td>
+                  <% } else { %>
+                  <td>여자</td>
+                  <% } %>
+                </tr>
+                <tr>
+                  <td>생년월일:</td>
+                  <td><%= data.birth %></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
