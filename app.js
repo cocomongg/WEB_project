@@ -1,4 +1,5 @@
 /* #region EXPRESS */
+const { response } = require("express");
 const express = require("express");
 const app = express();
 const port = 3000;
@@ -11,7 +12,7 @@ app.listen(port, () => {
 /* #endregion */
 
 /* #region DATABASE */
-var user;
+var Posts;
 
 const mysql = require("mysql");
 
@@ -26,13 +27,13 @@ connection.connect();
 
 connection.query("SELECT * from Posts", (error, rows, fields) => {
   if (error) throw error;
-  user = rows;
+  Posts = rows;
   console.log("Posts info is: ", rows);
 });
 
 connection.end();
 
 app.all("/mypage", function (request, response) {
-  response.send(user);
+  response.send(Posts);
 });
 /* #endregion */
