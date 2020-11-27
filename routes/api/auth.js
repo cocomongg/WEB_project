@@ -71,7 +71,7 @@ router.get('/logout', function (req, res) { //logout..
 router.post('/signin',
     passport.authenticate( //local authenticate...
         'local',
-        { failureRedirect: '/' } //if falid, redirect login page
+        { failureRedirect: '/auth/login' } //if falid, redirect login page
     ), function (req, res) {
         res.sendStatus(200);
     }
