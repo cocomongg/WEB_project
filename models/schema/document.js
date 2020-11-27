@@ -16,12 +16,15 @@ module.exports = (sequelize, DataType) => {
 
     Document.associate = function(models) {
         models.Document.belongsTo(models.User, {
-            onDelete: 'CASCADE',
             foreignKey: {
+                name: 'userId',
                 allowNull: false
-            }
+            },
+            targetKey: 'id'
         });
     };
 
-    return Document;
+    return {
+        Document
+    };
 };

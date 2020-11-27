@@ -12,12 +12,11 @@ router.get('/board', async function(req, res) {
 
     try {
         document = await db.Document.findAll({
+            include: db.User,
             order: [
                 ['id', 'DESC']
             ]
         });
-
-        console.log(document);
 
         res.render('board.ejs', documents=document);
     } catch (err) {
@@ -49,6 +48,27 @@ router.post('/board/write', async function(req, res) {
         res.redirect('/board');
     } catch (err) {
         res.status(500).send(err);
+    }
+});
+
+router.get('/board/doc/:id', async function(req, res) {
+    let docId = req.params.id;
+
+    try {
+        let doc = await db.Document.findOne({
+            include: db.User,
+            where: {
+                id: docId
+            }
+        });
+
+        if (!doc)
+            return res.status(404).render('error/404.html');
+        else
+            res.render('document.ejs', document=doc);
+    } catch (err) {
+        console.log(err);
+        return res.sendStatus(500);
     }
 });
 

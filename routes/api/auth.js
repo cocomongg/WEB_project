@@ -73,7 +73,7 @@ router.post('/signin',
         'local',
         { failureRedirect: '/auth/login' } //if falid, redirect login page
     ), function (req, res) {
-        res.sendStatus(200);
+        res.redirect('/');
     }
 );
 

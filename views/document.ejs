@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health Gallery</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/board.css" />
+    <header>
+        <% include ./head %>
+    </header>
+</head>
+
+<body>
+    <div id="board">
+        <h1><%=document.title%></h1>
+        <p style="font-size: small;"><%=document.user.name%>, <%=document.createdAt%> </p>
+    <hr>
+    <p><%=document.content%></p>
+    <button class="btn btn-outline-primary" onclick="location.href = '/board'">뒤로가기</button>
+    </div>
+</body>
+</html>

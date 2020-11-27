@@ -17,36 +17,48 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/board.css" />
 
-</head>
+    <header>
+        <% include ./head %>
+    </header>
 
-<header>
-    <% include ./head %>
-</header>
+</head>
 
 <body>
     <div id="board">
         <div>
             <h1>게시판</h1>
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%for (var i = 0; i < documents.length; i++) { %>
-                    <tr>
-                        <th>
-                            <%=documents[i].id%>
-                        </th>
-                        <th><%=documents[i].title%></th>
-                        <th><%=documents[i].id%></th>
-                    </tr>
-                    <%}%>
-                </tbody>
-            </table>
+            <% if (documents.length) {%>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%for (var i = 0; i < documents.length; i++) { %> 
+                        <tr onclick="location.href = '/board/doc/<%=documents[i].id%>'">
+                            <td id='docId'>
+                                <%=documents[i].id%>
+                            </td>
+                            <td><%=documents[i].title%></td>
+                            <td id='docOwner'><%=documents[i].user.name%></td>
+                        </tr>
+                        <%}%>
+                    </tbody>
+                </table>
+            <%} else {%>
+                <div class="card">
+                    <div class="card-body">
+                      <blockquote class="blockquote mb-0">
+                        <p>아쉽게도 작성된 글이 없습니다.</p>
+                        <footer class="blockquote-footer">첫 글의 주인공이 되어 보세요!</footer>
+                      </blockquote>
+                    </div>
+                  </div>
+            <%}%>
+            
         </div>
         <button class="btn btn-outline-primary" onclick="location.href = '/board/write'">글쓰기</button>
     </div>

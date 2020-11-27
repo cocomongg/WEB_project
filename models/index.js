@@ -14,13 +14,15 @@ const sequelize = new Sequelize(
     }
 );
 
-const documents = require('./schema/document')(sequelize, Sequelize);
-const users = require('./schema/user')(sequelize, Sequelize);
+const documentSchemas = require('./schema/document')(sequelize, Sequelize);
+const userSchemas = require('./schema/user')(sequelize, Sequelize);
 
-let db = {
-    Document: documents,
-    User: users
-};
+let db = Object.assign({}, documentSchemas, userSchemas);
+Object.keys(db).forEach(modelName => {
+    if (db[modelName].associate)
+        db[modelName].associate(db);
+});
+
 sequelize.sync().then(() => {
     console.log("SYNC COMPLETED");
 });
