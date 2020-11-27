@@ -12,6 +12,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api/index');
 
+var View = require('./routes/view/index');
 
 const { render } = require('ejs');
 
@@ -37,9 +38,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
+app.use('/', View);
+
+app.engine('html', require('ejs').renderFile);
+
+app.set('view engine', 'ejs');
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
