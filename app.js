@@ -1,39 +1,61 @@
-/* #region EXPRESS */
-const { response } = require("express");
-const express = require("express");
-const app = express();
-const port = 3000;
+var createError = require("http-errors");
+var express = require("express");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var logger = require("morgan");
+var cookieParser = require("cookie-parser");
+var session = require("express-session");
+var db = require("./models");
+var passport = require("passport");
 
-app.use(express.static("public"));
+var apiRouter = require("./routes/api/index");
+var viewPages = require("./routes/view/index");
 
-app.listen(port, () => {
-  console.log(`app listening at http://127.0.0.1:${port}`);
+const { render } = require("ejs");
+var app = express();
+
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
+app.use(express.json());
+
+app.use(logger("dev"));
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use(
+  session({
+    secret: process.env.SECRET_KEY,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/api", apiRouter);
+app.use("/", viewPages);
+
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  next(createError(404));
 });
-/* #endregion */
 
-/* #region DATABASE */
-var Posts;
+// error handler
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get("env") === "development" ? err : {};
 
-const mysql = require("mysql");
-
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "1234",
-  database: "mydb",
+  // render the error page
+  res.status(err.status || 500);
+  res.render("error");
 });
 
-connection.connect();
+app.enable("trust proxy");
 
-connection.query("SELECT * from Posts", (error, rows, fields) => {
-  if (error) throw error;
-  Posts = rows;
-  console.log("Posts info is: ", rows);
-});
-
-connection.end();
-
-app.all("/mypage", function (request, response) {
-  response.send(Posts);
-});
-/* #endregion */
+module.exports = app;

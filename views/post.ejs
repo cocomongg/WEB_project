@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <% include ./head.ejs %>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/post.css" />
+  </head>
+
+  <header><% include ./header.ejs %></header>
+
+  <body>
+    <!-- #region BODY -->
+    <div class="container body">
+      <form action="/board" , method="POST">
+        <fieldset>
+          <legend>POST</legend>
+          <input
+            class="form-control title"
+            name="title"
+            type="text"
+            placeholder="제목을 입력하세요"
+          />
+          <textarea
+            class="form-control contents"
+            name="contents"
+            type="text"
+            rows="15"
+            placeholder="내용을 입력하세요"
+          ></textarea>
+          <input
+            class="btn btn-outline-dark float-right"
+            value="게시하기"
+            type="submit"
+          />
+        </fieldset>
+      </form>
+    </div>
+    <!-- #endregion -->
+  </body>
+</html>
