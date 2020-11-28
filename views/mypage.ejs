@@ -8,8 +8,10 @@
   <header><% include ./header.ejs %></header>
 
   <body>
-    <!-- #region BODY -->
+    <!-- #region 로그인 상태 -->
+    <% if(locals.data) { %>
     <div class="container text-center">
+      <!-- #region 내 정보 -->
       <div class="table">
         <h4 class="font-weight-bold">내 정보</h4>
         <div class="row justify-content-center">
@@ -51,6 +53,7 @@
           </div>
         </div>
       </div>
+      <!-- #endregion -->
 
       <!-- #region 내 게시글 -->
       <div class="table">
@@ -98,6 +101,11 @@
       </div>
       <!-- #endregion -->
     </div>
+    <!-- #endregion -->
+    <!-- #region 로그아웃 상태 -->
+    <% } else { %>
+    <h1>u need to login</h1>
+    <% } %>
     <!-- #endregion -->
   </body>
 </html>
