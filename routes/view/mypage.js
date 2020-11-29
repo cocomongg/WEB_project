@@ -24,8 +24,17 @@ router.get("/", async function (req, res, next) {
         id: user,
       },
     });
+    let post = await db.Document.findAll({
+      where: {
+        userId: info.id,
+      },
+    });
     console.log("info:", info);
-    res.render("mypage", { title: "HealthGallery", data: info });
+    res.render("mypage", {
+      title: "HealthGallery",
+      data: info,
+      document: post,
+    });
   } catch (err) {
     console.log(err);
     return res.sendStatus(500);
