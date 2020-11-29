@@ -46,7 +46,9 @@
                 </tr>
                 <tr>
                   <td>생년월일:</td>
-                  <td><%= data.birth %></td>
+                  <% let ts = data.birth %>
+                  <% let date = ts.getFullYear() + "년 " + (ts.getMonth()+1) + "월 " + ts.getDate() + "일" %>
+                  <td> <%= date %> </td>
                 </tr>
               </tbody>
             </table>
@@ -71,7 +73,9 @@
             <tr>
               <td><%= document[i].id %></td>
               <td><%= document[i].title %></td>
-              <td> <%= document[i].updatedAt %> </td>
+              <% let ts = document[i].updatedAt %>
+              <% let date = ts.getFullYear() + "-" + (ts.getMonth()+1) + "-" + ts.getDate() + " " + ts.getHours() + ":" + ts.getMinutes() %>
+              <td> <%= date %> </td>
             </tr>
             <% } %>
           </tbody>
