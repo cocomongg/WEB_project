@@ -70,7 +70,7 @@
           </thead>
           <tbody>
             <% for (let i=0; i<document.length; i++) { %>
-            <tr>
+            <tr onclick="location.href = '/board/doc/<%=document[i].id%>'">
               <td><%= document[i].id %></td>
               <td><%= document[i].title %></td>
               <% let ts = document[i].updatedAt %>
