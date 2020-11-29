@@ -1,0 +1,20 @@
+#board {
+    padding: 3% 15% 15% 15%;
+}
+
+#docId {
+    text-align: center;
+}
+
+#docOwner {
+    text-align: center;
+}
+
+th {
+    text-align: center;
+}
+
+.card {
+    margin: 5%;
+    text-align: center;
+}

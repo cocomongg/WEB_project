@@ -6,11 +6,11 @@ const db = require("../../models");
 //   res.render("mypage", { title: "HealthGallery" });
 // });
 
-router.get("/", async function (req, res, next) {
+router.get("/mypage", async function (req, res, next) {
   /* #region 로그인 안되어있으면 */
   if (req.user == undefined) {
     console.log("user undefined");
-    return res.render("mypage", { title: "HealthGallery" });
+    return res.render("mypage.ejs", { title: "HealthGallery", page:'head_login' });
   }
   /* #endregion */
 
@@ -34,6 +34,7 @@ router.get("/", async function (req, res, next) {
       title: "HealthGallery",
       data: info,
       document: post,
+      page: 'head_logout'
     });
   } catch (err) {
     console.log(err);

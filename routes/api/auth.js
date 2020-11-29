@@ -7,6 +7,10 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
+
+
+// var check_login = "로그인";
+
 passport.use(
     new LocalStrategy({
         usernameField: 'username',
@@ -25,7 +29,7 @@ passport.use(
 
             if (!user) { //user exist?
                 return done(false, null, {
-                    message: 'user not exist'
+                    message: '가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.'        //message: 'user not exist'
                 });
             }
 
@@ -40,7 +44,7 @@ passport.use(
                 }); //if user is not blocked, return true
             } else
                 return done(false, null, {
-                    message: 'password error'
+                    message: '가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.' //message: 'password error'
                 });
         }));
 
@@ -71,9 +75,11 @@ router.get('/logout', function (req, res) { //logout..
 router.post('/signin',
     passport.authenticate( //local authenticate...
         'local',
-        { failureRedirect: '/' } //if falid, redirect login page
+        {   successRedirect: '/',
+            failureRedirect: '/auth/login' ,
+            failureFlash: true} //if falid, redirect login page
     ), function (req, res) {
-        res.sendStatus(200);
+        res.redirect('/');
     }
 );
 
@@ -120,6 +126,7 @@ router.post('/signup', async function (req, res) {
     if (usernameCheck) { //if is overlap...
         return res.sendStatus(403);;
     }
+    console.log(username, password, name, birth, isMan);
 
     try { //make user database
         let saltRounds = 7;

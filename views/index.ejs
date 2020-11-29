@@ -1,36 +1,73 @@
 <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <% include ./head.ejs %>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/index.css" />
-  </head>
 
-  <header><% include ./header.ejs %></header>
+<head>
+    <!-- #region MetaData -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health Gallery</title>
+    <!-- #endregion -->
 
-  <body>
+    <!-- #region Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- #endregion -->
+
+    <!-- #region Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <!-- #endregion -->
+</head>
+
+<header>
+    <%- include(page) %>
+</header>
+
+<body>
     <!-- #region BODY -->
+    <!-- <div class="container">
+        <div class="row">
+            <div id='main-item' class="img-responsive col-md-4" style="width: 300px">
+                <h4>다이어트</h4>
+                <img src="images/diet.jpeg">
+            </div>
+            <div id='main-item' class="img-responsive col-md-4">
+                <h4>웨이트</h4>
+                <img src="images/weight.jpg">
+            </div>
+            <div id='main-item' class="img-responsive col-md-4">
+                <h4>유산소</h4>
+                <img  src="images/o2.jpg">
+            </div>
+        <div>
+    </div> -->
     <div class="container body">
-      <div class="text-center row">
-        <div class="col-sm-4 item">
-          <a href="cardio">
-            다이어트
-            <img src="img/diet.jpeg" alt="diet" class="img-responsive img" />
-          </a>
+        <div class="text-center row">
+            <div class="col-sm-4 item" id="main-item">
+                <a href="cardio.html">
+                    다이어트
+                    <img src="images/diet.jpeg" alt="diet" class="img-responsive img">
+                </a>
+            </div>
+            <div class="col-sm-4 item" id="main-item">
+                <a href="cardio.html">
+                    웨이트
+                    <img src="images/weight.jpg" alt="weight" class="img-responsive img">
+                </a>
+            </div>
+            <div class="col-sm-4 item" id="main-item">
+                <a href="cardio.html">
+                    유산소
+                    <img src="images/o2.jpg" alt="o2" class="img-responsive img">
+                </a>
+            </div>
         </div>
-        <div class="col-sm-4 item">
-          <a href="cardio">
-            웨이트
-            <img src="img/weight.jpg" alt="weight" class="img-responsive img" />
-          </a>
-        </div>
-        <div class="col-sm-4 item">
-          <a href="cardio">
-            유산소
-            <img src="img/o2.jpg" alt="o2" class="img-responsive img" />
-          </a>
-        </div>
-      </div>
     </div>
     <!-- #endregion -->
-  </body>
+</body>
+
 </html>

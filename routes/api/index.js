@@ -1,10 +1,10 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const DocumentAPI = require("./document");
-const AuthAPI = require("./auth");
+const DocumentAPI = require('./document');
+const AuthAPI = require('./auth');
 
-router.use("/doc", DocumentAPI);
-router.use("/auth", AuthAPI);
+router.use('/doc', DocumentAPI);
+router.use('/auth', AuthAPI);
 
 module.exports = router;

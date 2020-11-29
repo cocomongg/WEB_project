@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health Gallery</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/board.css" />
+
+    <header>
+        <%- include(page) %>
+    </header>
+
+</head>
+
+<body>
+    <div id="board">
+        <div>
+            <h1>게시판</h1>
+            <% if (documents.length) {%>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%for (var i = 0; i < documents.length; i++) { %> 
+                        <tr onclick="location.href = '/board/doc/<%=documents[i].id%>'">
+                            <td id='docId'>
+                                <%=documents[i].id%>
+                            </td>
+                            <td><%=documents[i].title%></td>
+                            <td id='docOwner'><%=documents[i].user.name%></td>
+                        </tr>
+                        <%}%>
+                    </tbody>
+                </table>
+            <%} else {%>
+                <div class="card">
+                    <div class="card-body">
+                      <blockquote class="blockquote mb-0">
+                        <p>아쉽게도 작성된 글이 없습니다.</p>
+                        <footer class="blockquote-footer">첫 글의 주인공이 되어 보세요!</footer>
+                      </blockquote>
+                    </div>
+                  </div>
+            <%}%>
+            
+        </div>
+        <button class="btn btn-outline-primary" onclick="location.href = '/board/write'">글쓰기</button>
+    </div>
+</body>
+
+</html>
