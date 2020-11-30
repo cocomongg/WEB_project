@@ -102,16 +102,22 @@ router.get('/check/username/:username', async function (req, res) {
 router.post('/signup', async function (req, res) {
     let username = req.body.username;
     let password = req.body.password;
+    let password2 = req.body.password2;
     let name = req.body.name;
     let birth = req.body.birth;
     let isMan = req.body.isMan;
 
-    if (!username) { res.sendStatus(400); return; }
-    if (!password) { res.sendStatus(400); return; }
-    if (!name) { res.sendStatus(400); return; }
-    if (!birth) { res.sendStatus(400); return; }
-    if (!isMan) { res.sendStatus(400); return; }
+    if(password !== password2) {return res.send("<script>alert('입력한 패스워드가 틀립니다'); location.href='/register'</script>");}
+
+    if (!username){return res.send("<script>alert('모든 정보를 입력해주세요'); location.href='/register'</script>");}
+
+    if (!password) {return res.send("<script>alert('모든 정보를 입력해주세요'); location.href='/register'</script>");}
+    if (!password2) {return res.send("<script>alert('모든 정보를 입력해주세요'); location.href='/register'</script>");}
+    if (!name) {return res.send("<script>alert('모든 정보를 입력해주세요'); location.href='/register'</script>");}
+    if (!birth) {return res.send("<script>alert('모든 정보를 입력해주세요'); location.href='/register'</script>");}
+    if (!isMan) {return res.send("<script>alert('모든 정보를 입력해주세요'); location.href='/register'</script>");}
     //check field is valid
+
 
     let usernameCheck;
     try { //find newbie is overlap?
@@ -120,11 +126,11 @@ router.post('/signup', async function (req, res) {
             where: { username }
         });
     } catch (err) {
-        return res.sendStatus(500);
+        return res.send("<script>alert('정보를 다시 입력해주세요'); location.href='/register'</script>");
     }
 
     if (usernameCheck) { //if is overlap...
-        return res.sendStatus(403);;
+        return res.send("<script>alert('이미 존재하는 아이디 입니다'); location.href='/register'</script>");
     }
     console.log(username, password, name, birth, isMan);
 
@@ -141,9 +147,10 @@ router.post('/signup', async function (req, res) {
             isMan
         });
 
-        res.sendStatus(201);
+        // res.sendStatus(201);
+        return res.send("<script>alert('회원가입을 축하드립니다!'); location.href='/'</script>");
     } catch (err) {
-        res.sendStatus(500);
+        return res.send("<script>alert('정보를 다시 입력해주세요'); location.href='/register'</script>");
     }
 });
 
