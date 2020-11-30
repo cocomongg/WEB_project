@@ -34,10 +34,7 @@ router.get('/board/write', async function(req, res) {
     let head;
     if(req.user === undefined) {
         head = 'head_login';
-        
-        req.session.message = "test";
-        req.flash("info", "로그인이 필요합니다.");
-        res.send('<script>alert("로그인이 필요합니다.");location.href="/auth/login";</script>');
+        return res.send('<script>alert("로그인이 필요합니다.");location.href="/auth/login";</script>');
     }       
     else
         head = 'head_logout';
@@ -49,7 +46,7 @@ router.post('/board/write', async function(req, res) {
     let content = req.body.contents;
 
     if (!req.user)
-        res.send('<script>alert("로그인이 필요합니다.");location.href="/auth/login";</script>');;
+        return res.send('<script>alert("로그인이 필요합니다.");location.href="/auth/login";</script>');;
 
     let userId = req.user.id;
 
