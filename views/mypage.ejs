@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <% include ./head.ejs %>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mypage.css" />
+  </head>
+
+  <header><%- include(page) %></header>
+
+  <body>
+    <!-- #region 로그인 상태 -->
+    <% if(locals.data) { %>
+    <div class="container text-center">
+      <!-- #region 내 정보 -->
+      <div class="table">
+        <h4 class="font-weight-bold">내 정보</h4>
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <table class="table table-sm table-borderless">
+              <thead class="thead-dark">
+                <tr>
+                  <th>index</th>
+                  <th>User Info</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>아이디:</td>
+                  <td><%= data.username %></td>
+                </tr>
+                <tr>
+                  <td>이름:</td>
+                  <td><%= data.name %></td>
+                </tr>
+                <tr>
+                  <td>성별:</td>
+                  <% if (data.isMan==true) { %>
+                  <td>남자</td>
+                  <% } else { %>
+                  <td>여자</td>
+                  <% } %>
+                </tr>
+                <tr>
+                  <td>생년월일:</td>
+                  <% let ts = data.birth %>
+                  <% let date = ts.getFullYear() + "년 " + (ts.getMonth()+1) + "월 " + ts.getDate() + "일" %>
+                  <td> <%= date %> </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region 내 게시글 -->
+      <div class="table">
+        <h4 class="font-weight-bold">내 게시글</h4>
+        <table class="table table-sm table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th>No.</th>
+              <th>Title</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (let i=0; i<document.length; i++) { %>
+            <tr onclick="location.href = '/board/doc/<%=document[i].id%>'">
+              <td><%= document[i].id %></td>
+              <td><%= document[i].title %></td>
+              <% let ts = document[i].updatedAt %>
+              <% let date = ts.getFullYear() + "-" + (ts.getMonth()+1) + "-" + ts.getDate() + " " + ts.getHours() + ":" + ts.getMinutes() %>
+              <td> <%= date %> </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+      <!-- #endregion -->
+    </div>
+    <!-- #endregion -->
+
+    <!-- #region 로그아웃 상태 -->
+    <% } else { %>
+    <!-- TODO: 로그인 버튼 추가 -->
+    <a href="/auth/login"><h1 style="text-align: center;">you need to login</h1></a>
+    <% } %>
+    <!-- #endregion -->
+  </body>
+</html>

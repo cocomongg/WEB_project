@@ -1,0 +1,21 @@
+#main-item {
+    width: 33%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.row {
+    width: 100%;
+    padding: 20px;
+}
+
+.body {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+@media (max-width: 700px) {
+    #main-item {
+        width: 100%;
+    }
+}

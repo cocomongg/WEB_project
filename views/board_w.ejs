@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <!-- #region MetaData -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health Gallery</title>
+    <!-- #endregion -->
+
+    <!-- #region Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- #endregion -->
+
+    <!-- #region Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/board_w.css" />
+    <!-- #endregion -->
+  </head>
+
+  <header>
+    <%- include(page) %>
+  </header>
+
+  <body>
+    <!-- #region BODY -->
+    <div class="container body">
+      <form action="/board/write" , method="POST">
+        <fieldset>
+          <legend>글 쓰기</legend>
+          <input
+            class="form-control title"
+            name="title"
+            type="text"
+            placeholder="제목을 입력하세요"
+          />
+          <textarea
+            class="form-control contents"
+            name="contents"
+            type="text"
+            rows="15"
+            placeholder="내용을 입력하세요"
+          ></textarea>
+          <input class="btn btn-outline-dark float-right" value="게시하기" type="submit">
+        </fieldset>
+      </form>
+    </div>
+    <!-- #endregion -->
+  </body>
+</html>
